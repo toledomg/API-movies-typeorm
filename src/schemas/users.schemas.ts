@@ -1,22 +1,21 @@
 import { z } from 'zod';
 
-// export const userSchema = z.object({
-//   id: z.number(),
-//   name: z.string(),
-//   email: z.string().email(),
-//   password: z.string().min(4),
-//   admin: z.boolean().optional().default(false),
-//   active: z.boolean().optional().default(true),
-// });
+export const movieSchema = z.object({
+  name: z.string().max(50),
+  description: z.string().optional().nullable(),
+  duration: z.number().positive(),
+  price: z.number().int().positive(),
+});
 
-// export const requestUserSchema = userSchema.omit({ id: true });
+export const requestMovieSchema = movieSchema.extend({ id: z.number() });
 
-// export const responseUserSchema = userSchema.omit({
-//   password: true,
-// });
+export const requestAllMoviesSchema = requestMovieSchema.array();
 
-// export const responseOnlyEmail = userSchema.pick({ email: true });
+export const movieUpdateSchema = movieSchema.partial();
 
-// export const requestAllUsersSchema = z.array(responseUserSchema);
-
-// export const updateUserSchema = requestUserSchema.partial();
+export const requestMoviesPaginationSchema = z.object({
+  prevPage: z.string().nullable(),
+  nextPage: z.string().nullable(),
+  count: z.number(),
+  movieData: requestAllMoviesSchema,
+});

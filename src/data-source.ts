@@ -19,7 +19,7 @@ const DataSourceConfig = (): DataSourceOptions => {
 
   const dbUrl: string | undefined = process.env.DATABASE_URL;
 
-  if (!dbUrl) throw new Error('Env var DATABASE_URL does not exists');
+  if (!dbUrl) throw new Error('DATABASE_URL does not defined in .env');
 
   return {
     type: 'postgres',

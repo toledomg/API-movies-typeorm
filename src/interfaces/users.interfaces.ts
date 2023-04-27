@@ -1,22 +1,20 @@
-import { QueryResult } from 'pg';
 import { z } from 'zod';
-
 import {
-  requestUserSchema,
-  responseOnlyEmail,
-  responseUserSchema,
-  updateUserSchema,
-  userSchema,
+  movieSchema,
+  requestAllMoviesSchema,
+  requestMovieSchema,
+  requestMoviesPaginationSchema,
 } from '../schemas/users.schemas';
+import { DeepPartial } from 'typeorm';
 
-export type TUser = z.infer<typeof userSchema>;
+export type TMovie = z.infer<typeof movieSchema>;
 
-export type TUserReqEmail = z.infer<typeof responseOnlyEmail>;
+export type TMovieRequest = z.infer<typeof requestMovieSchema>;
 
-export type TUserRequest = z.infer<typeof requestUserSchema>;
+export type TMovieUpdate = DeepPartial<TMovie>;
 
-export type TUserResult = QueryResult<TUserRequest>;
+export type TMovieResult = z.infer<typeof requestAllMoviesSchema>;
 
-export type TUserResponse = z.infer<typeof responseUserSchema>;
-
-export type TUserUpdate = z.infer<typeof updateUserSchema>;
+export type TMoviesPaginationRequest = z.infer<
+  typeof requestMoviesPaginationSchema
+>;
