@@ -31,8 +31,6 @@ export const listMovieController = async (
   }
   if (!query.order) query.order = 'asc';
 
-  console.log(query.order);
-
   const listMovies: TMoviesPaginationRequest = await listAllMoviesService(
     query.perPage,
     query.page,

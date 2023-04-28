@@ -31,8 +31,6 @@ export const listAllMoviesService = async (
   const baseUrl = process.env.BASE_URL;
   const PORT = process.env.PORT || 3000;
 
-  //   console.log(`${baseUrl}:${PORT}`);
-
   const prevPage =
     skip > 1
       ? `${baseUrl}:${PORT}/movies?page=${skip - 1}&perPage=${take}`
