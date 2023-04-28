@@ -1,5 +1,9 @@
 import { Repository } from 'typeorm';
-import { TMovie, TMovieRequest } from '../../interfaces/users.interfaces';
+import {
+  TMovie,
+  TMovieRequest,
+  TRepository,
+} from '../../interfaces/users.interfaces';
 import { Movie } from '../../entities';
 import { AppDataSource } from '../../data-source';
 import { requestMovieSchema } from '../../schemas/users.schemas';
@@ -7,9 +11,9 @@ import { requestMovieSchema } from '../../schemas/users.schemas';
 export const createMoviesService = async (
   userData: TMovie
 ): Promise<TMovieRequest> => {
-  const movieRepository: Repository<Movie> = AppDataSource.getRepository(Movie);
+  const movieRepository: TRepository = AppDataSource.getRepository(Movie);
 
-  const movie = movieRepository.create(userData);
+  const movie: TMovie = movieRepository.create(userData);
 
   await movieRepository.save(movie);
 

@@ -5,7 +5,8 @@ import {
   requestMovieSchema,
   requestMoviesPaginationSchema,
 } from '../schemas/users.schemas';
-import { DeepPartial } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
+import { Movie } from '../entities';
 
 export type TMovie = z.infer<typeof movieSchema>;
 
@@ -18,3 +19,5 @@ export type TMovieResult = z.infer<typeof requestAllMoviesSchema>;
 export type TMoviesPaginationRequest = z.infer<
   typeof requestMoviesPaginationSchema
 >;
+
+export type TRepository = Repository<Movie>;
