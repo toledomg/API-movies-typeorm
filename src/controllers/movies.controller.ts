@@ -6,13 +6,13 @@ import {
 } from '../interfaces/users.interfaces';
 import { listAllMoviesService } from '../services/users/listAllMovies.service';
 import { updateMovieService } from '../services/users/updateMovies.service';
+import { deleteMovieService } from '../services/users/deleteMovie.service';
 
 export const createMovieController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { body, params } = req;
-  console.log({ body });
+  const { body } = req;
 
   const newMovie = await createMoviesService(body);
 
@@ -46,10 +46,10 @@ export const updateMovieController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { body } = req;
-  const id = Number(req.params.id);
+  const { body, params } = req;
+  const { id } = params;
 
-  const updateMovie = await updateMovieService(body, id);
+  const updateMovie = await updateMovieService(body, Number(id));
 
   return res.json(updateMovie);
 };
@@ -58,9 +58,10 @@ export const deleteMovieController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { body, params, query } = req;
-
+  const { params } = req;
   const { id } = params;
 
-  return res.status(200).send(id);
+  const deleteMovie = await deleteMovieService(Number(id));
+
+  return res.status(204).send(deleteMovie);
 };
