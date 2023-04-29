@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import { Repository } from 'typeorm';
 import { AppDataSource } from '../data-source';
 import { Movie } from '../entities';
 import { AppError } from '../errors/error';
@@ -12,17 +11,15 @@ export const ensureIdMovieExist = async (
 ): Promise<Response | void> => {
   const movieRepository: TRepository = AppDataSource.getRepository(Movie);
 
-  const { id } = req.body;
+  const { id } = req.params;
 
   if (id) {
-    const idVerify = await movieRepository.findOne({
-      where: {
-        id: id,
-      },
+    const idVerify = await movieRepository.findOneBy({
+      id: Number(id),
     });
 
-    if (idVerify) {
-      throw new AppError('Movie already exists.', 409);
+    if (!idVerify) {
+      throw new AppError('Movie not found', 404);
     }
   }
 

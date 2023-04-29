@@ -13,7 +13,7 @@ export const listAllMoviesService = async (
   sort: any,
   order: any
 ): Promise<TMoviesPaginationRequest> => {
-  const movieRepository: Repository<Movie> = AppDataSource.getRepository(Movie);
+  const movieRepository: TRepository = AppDataSource.getRepository(Movie);
 
   const countMovies = await movieRepository.count();
 

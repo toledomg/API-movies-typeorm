@@ -5,6 +5,7 @@ import {
   TMoviesPaginationRequest,
 } from '../interfaces/users.interfaces';
 import { listAllMoviesService } from '../services/users/listAllMovies.service';
+import { updateMovieService } from '../services/users/updateMovies.service';
 
 export const createMovieController = async (
   req: Request,
@@ -45,11 +46,12 @@ export const updateMovieController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { body, params, query } = req;
+  const { body } = req;
+  const id = Number(req.params.id);
 
-  const { id } = params;
+  const updateMovie = await updateMovieService(body, id);
 
-  return res.status(200).json(id);
+  return res.json(updateMovie);
 };
 
 export const deleteMovieController = async (
