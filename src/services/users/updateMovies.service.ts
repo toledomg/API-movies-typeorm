@@ -12,7 +12,6 @@ export const updateMovieService = async (
   id: number
 ): Promise<TMovieRequest> => {
   const movieRepository: TRepository = AppDataSource.getRepository(Movie);
-  console.log(id);
 
   const bodyDataMovie = await movieRepository.findOneBy({
     id: id,

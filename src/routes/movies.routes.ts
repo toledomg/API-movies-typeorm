@@ -8,11 +8,7 @@ import {
 import { ensureIdMovieExist } from '../middleware/ensureIdMovieExist.middleware';
 import { ensureNameMovieExist } from '../middleware/ensureNameMovieExist.middleware';
 import { ensureBodyIsValidMiddleware } from '../middleware/ensure.bodyIsValid.middleware';
-import {
-  movieSchema,
-  movieUpdateSchema,
-  requestMovieSchema,
-} from '../schemas/users.schemas';
+import { movieSchema, movieUpdateSchema } from '../schemas/users.schemas';
 
 export const moviesRoutes: Router = Router();
 
