@@ -19,11 +19,7 @@ moviesRoutes.post(
   ensureIdMovieExist,
   createMovieController
 );
-moviesRoutes.get(
-  '',
-
-  listMovieController
-);
+moviesRoutes.get('', listMovieController);
 moviesRoutes.patch(
   '/:id',
   ensureBodyIsValidMiddleware(movieUpdateSchema),
